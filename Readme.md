@@ -85,17 +85,6 @@ If balance is too low, the request fails with `422` — and the failed attempt i
 
 ---
 
-## Run Tests
-
-```bash
-createdb mini_wallet_test
-npm test
-```
-
-Tests cover: creating wallets, adding/spending money, duplicate requests, insufficient balance, and 5 concurrent debits hitting the same wallet at once.
-
----
-
 ## What I'd improve for production
 
 Right now locking happens at the database level which works perfectly. Under very high load the bottleneck would be too many requests waiting for DB connections. The fix would be a Redis lock per `userId` to reject excess requests before they even reach the database.
